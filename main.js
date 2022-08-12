@@ -17,6 +17,14 @@ imageFileInput.addEventListener("change", () =>{
     }, {once: true});
 })
 
+topTextInput.addEventListener("change", () => {
+    updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value)
+})
+
+bottomTextInput.addEventListener("change", () => {
+    updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value)
+})
+
 function updateMemeCanvas(canvas, image, topText, bottomText){
     const ctx = canvas.getContext("2d");
     const width = image.width;
@@ -45,4 +53,11 @@ function updateMemeCanvas(canvas, image, topText, bottomText){
 
     ctx.textBaseline = "top";
     ctx.strokeText(topText, width /2, yOffest);
+    ctx.fillText(topText, width /2, yOffest);
+
+    //Add bottom text
+
+    ctx.textBaseline = "bottom";
+    ctx.strokeText(bottomText, width /2, height - yOffest);
+    ctx.fillText(bottomText, width /2, height - yOffest);
 }
